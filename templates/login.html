@@ -2,4 +2,16 @@
 
 {% block content %}
     <h1>{{result}}</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <label for = 'username'>Enter Username :</label>
+        <input type="text" name="username" placeholder="Username..." class="form-control">
+        <label>Enter Password :</label>
+        <input type="password" name="password" placeholder="Password..." class="form-control" >
+        <input class="btn login_btn" type="submit" value="Login">
+        <div>
+            Don't have an account? <a href="{% url 'signUp' %}" class="ml-2">Sign Up</a>
+        </div>
+    </form>
 {% endblock %}
