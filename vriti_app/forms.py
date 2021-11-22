@@ -6,16 +6,15 @@ from django import forms
 from captcha.fields import CaptchaField
 
 
-# from .model import Order 
-
-# class OrderForm(ModelForm):
-#     class Meta:
-#         model = Order
-#         fields = '__all__'
+CHOICES = [
+    ('employer', 'Employer'),
+    ('employee', 'Employee'),
+]
 
 class CreateUserForm(UserCreationForm):
     email = forms.EmailField(required = True)
+    category = forms.CharField(max_length = 100, label = 'Select Category', widget=forms.Select(choices=CHOICES))
     captcha = CaptchaField()
     class Meta:
         model = User 
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'category']
