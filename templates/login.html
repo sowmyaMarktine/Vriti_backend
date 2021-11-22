@@ -2,4 +2,16 @@
 
 {% block content %}
     <h1>{{result}}</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.errors}}
+        <label for = 'email' class="mb-2">User Email Address :</label>
+        <input type="email" name="email" placeholder="mail@.com..." class="form-control"><br>
+        <label class="mb-2">Password :</label>
+        <input type="password" name="password" placeholder="Enter Password..." class="form-control" ><br>
+        <input class="btn login_btn" type="submit" value="Login">
+        <div class="mt-5">
+            Don't you have an account? <a href="{% url 'signUp' %}">Sign Up</a>
+        </div>
+    </form>
 {% endblock %}

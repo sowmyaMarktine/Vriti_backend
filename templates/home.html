@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
-
+<style>
+    .bg-container{
+        background-color: aqua;
+        height: 100vh;
+    }
+</style>
 {% block content %}
-    <h1>{{result}}</h1>
+    <div class="bg-container">
+        <h1>{{result}}</h1>
+        <span>{{request.user}}</span>
+        <span><a href="{% url 'logout' %}">LogOut</a></span>
+    </div>
 {% endblock %}
