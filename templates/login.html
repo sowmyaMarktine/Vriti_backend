@@ -4,7 +4,7 @@
     <h1>{{result}}</h1>
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.errors}}
+        <!-- {{form.errors}} -->
         <label for = 'email' class="mb-2">User Email Address :</label>
         <input type="email" name="email" placeholder="mail@.com..." class="form-control"><br>
         <label class="mb-2">Password :</label>
