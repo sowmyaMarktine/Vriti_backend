@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import SerialData, UsersApiView
+from .views import UsersApiView
 from rest_framework import routers
 
 # router = routers.DefaultRouter()
