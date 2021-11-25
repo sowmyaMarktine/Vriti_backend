@@ -75,20 +75,20 @@ class UserDetails(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET', 'POST'])
-def SerialData(request):
-    if request.method == 'GET':
-        queryset = User.objects.all()
-        serializer_class = Userserializers(queryset, many = True)
-        return Response(serializer_class.data)
+# @api_view(['GET', 'POST'])
+# def SerialData(request):
+#     if request.method == 'GET':
+#         queryset = User.objects.all()
+#         serializer_class = Userserializers(queryset, many = True)
+#         return Response(serializer_class.data)
 
-    elif request.method == 'POST':
-        serializer = Userserializers(data = request.data)
+#     elif request.method == 'POST':
+#         serializer = Userserializers(data = request.data)
 
-        if serializer.is_valid():
-            print(serializer.data)
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+#         if serializer.is_valid():
+#             print(serializer.data)
+#             return Response(serializer.data, status = status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
 def signUp(request):
