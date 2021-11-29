@@ -1,31 +1,49 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
-from django.contrib import messages
+# from django.shortcuts import render
+# from django.http import HttpResponse, JsonResponse
+# from django.shortcuts import redirect
+# from django.contrib import messages
 # from django.contrib.auth.forms import UserCreationForm
 # from .forms import CreateUserForm
 
 # from .models import Category
 # Create your views here.
 from .models import * 
-from django.contrib.auth import authenticate, login as user_login, logout as user_logout
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth import authenticate, login as user_login, logout as user_logout
+# from django.contrib.auth.decorators import login_required
 
 from rest_framework import viewsets
-from .serializers import Userserializers
+from .serializers import Userserializers, RegistrationSerializer
 
-from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view
+# from rest_framework.parsers import JSONParser
+# from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 
+# viewsets.ModelViewSet
 class SerialData(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = Userserializers
     # return JsonResponse(serializers.data, safe = False)
     
+class RegistrationView(APIView):
+    # parser_classes = [JSONParser]
 
+    def post(self, request):
+        serializer = RegistrationSerializer(data = request.data)
+        data = {}
+        if serializer.is_valid():
+            userAccount = serializer.save()
+            data['response'] = 'Successfully registered a new user'
+            data['email'] = userAccount.email
+            data['username'] = userAccount.username 
+            data['category'] = userAccount.category
+            token = Token.objects.get(user = userAccount).key 
+            data['token'] = token
+        else:
+            data = serializer.errors 
+        return Response(data)
 
 # class UsersApiView(APIView):
 #     parser_classes = [JSONParser]

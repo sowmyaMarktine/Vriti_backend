@@ -39,12 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vriti_app',
-    'captcha',
+    # 'captcha',
     'rest_framework',
     'rest_framework.authtoken',
 ]
 
-AUTH_USER_MODEL = "vriti_app.User"
+# AUTH_USER_MODEL = "vriti_app.User"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -93,12 +93,20 @@ WSGI_APPLICATION = 'vriti_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+   'default': {
+      'ENGINE': 'djongo',
+      'NAME': 'vritidb',
+   }
+}
+
+'''
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

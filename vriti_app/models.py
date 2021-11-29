@@ -59,7 +59,7 @@ class User(AbstractBaseUser):
     objects = MyManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'category']
 
     def __str__(self):
         return self.username
@@ -74,6 +74,7 @@ class User(AbstractBaseUser):
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
+        print('token generated')
         Token.objects.create(user=instance)
 # class Category(models.Model):
 #     # category_id = models.IntegerField(primary_key = True)

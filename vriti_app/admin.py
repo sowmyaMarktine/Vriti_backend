@@ -5,8 +5,12 @@ from .models import User
 # Register your models here.
 # admin.site.register(Category)
 class UserAdmin(UserAdmin):
-    list_display = ('email', 'username', 'firstname', 'lastname', 'is_staff')
-    search_fields = ('email', 'username'),
-    # readonly_fields = ('id', 'firstname', 'lastname', 'is_staff')
+    list_display = ('email', 'username', 'first_name', 'last_name', 'category', 'is_active', 'is_superuser')
+    search_fields = ('email', 'username')
+    readonly_fields = ('id', 'first_name', 'last_name', 'is_active')
 
-admin.site.register(User)
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+admin.site.register(User, UserAdmin)
